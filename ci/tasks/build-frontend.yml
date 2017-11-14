@@ -3,7 +3,7 @@ platform: linux
 image_resource:
   type: docker-image
   source: {repository: node, tag: "6" }
-  
+
 inputs:
 - name: cnets-chat-git
   path: /
@@ -11,6 +11,9 @@ inputs:
 - name: dependency-cache
   path: /cache
 
+outputs:
+- name: frontend-public
+  
 run:
   path: sh
   args:
@@ -18,4 +21,5 @@ run:
     - |
       export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
       mv cache/node_modules frontend
-      cd frontend && ls && npm run build && ls public/js
+      cd frontend && npm run build && ls -LR public
+      cp -a public/. ../frontend-public

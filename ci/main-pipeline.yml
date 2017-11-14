@@ -87,6 +87,7 @@ jobs:
   - get: cnets-chat-git
     trigger: true
     passed: [Build frontend]
+
   - put: backend-stage
     params:
       manifest: cnets-chat-git/ci/assets/backend-manifest.yml
@@ -95,7 +96,7 @@ jobs:
   - put: frontend-stage
     params:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
-      path: cnets-chat-git/frontend/public
+      path: frontend-public
 
   - put: madhosoi-slack
     params:
