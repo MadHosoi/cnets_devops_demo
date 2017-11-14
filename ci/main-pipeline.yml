@@ -48,17 +48,17 @@ jobs:
     trigger: true
   
   - task: build-frontend
-    file: cnets_devops_demo/ci/tasks/build-frontend.yml
+    file: cnets-chat-git/ci/tasks/build-frontend.yml
 
   - put: backend-stage
     params:
-      manifest: cnets_devops_demo/ci/assets/backend-manifest.yml
-      path: cnets_devops_demo/backend
+      manifest: cnets-chat-git/ci/assets/backend-manifest.yml
+      path: cnets-chat-git/backend
 
   - put: frontend-stage
     params:
-      manifest: cnets_devops_demo/ci/assets/frontend-manifest.yml
-      path: cnets_devops_demo/frontend/public
+      manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
+      path: cnets-chat-git/frontend/public
 
   - put: madhosoi-slack
     params:
