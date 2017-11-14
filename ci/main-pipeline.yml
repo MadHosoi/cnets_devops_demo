@@ -17,7 +17,7 @@ resources:
 - name: madhosoi-slack
   type: slack-notification
   source:
-    uri: {{slack-uri}}
+    url: {{slack-url}}
 
 - name: backend-stage
   type: cf
