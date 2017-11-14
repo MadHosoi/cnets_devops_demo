@@ -14,4 +14,4 @@ run:
     - -exc
     - |
       mv cache/node_modules frontend
-      cd frontend && npm run build
+      cd frontend && ll && npm run build
