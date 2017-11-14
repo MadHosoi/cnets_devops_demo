@@ -119,7 +119,7 @@ jobs:
   - put: frontend-stage
     params:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
-      path: frontend-public
+      path: cnets-chat-git/frontend-public
 
   - put: madhosoi-slack
     params:
