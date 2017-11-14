@@ -58,19 +58,20 @@ resources:
 jobs:
 - name: Install dependencies
   plan:
-  - get: cnets-chat-git
-    trigger: true
-  - get: dependency-cache
   - put: madhosoi-slack
     params:
       channel: '#general'
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
       text: Fujitsu CNETS Chat uploading!
       username: madhosoibot
+  - get: cnets-chat-git
+    trigger: true
+  - get: dependency-cache
 
 - name: Build frontend
   plan:
   - get: cnets-chat-git
+    trigger: true
     passed: [Install dependencies]
 
   - get: dependency-cache
@@ -84,6 +85,7 @@ jobs:
   serial: true
   plan:
   - get: cnets-chat-git
+    trigger: true
     passed: [Build frontend]
   - put: backend-stage
     params:

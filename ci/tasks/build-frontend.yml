@@ -3,11 +3,14 @@ platform: linux
 image_resource:
   type: docker-image
   source: {repository: node, tag: "6" }
+  
 inputs:
 - name: cnets-chat-git
   path: /
+
 - name: dependency-cache
   path: /cache
+
 run:
   path: sh
   args:
