@@ -13,5 +13,6 @@ run:
   args:
     - -exc
     - |
+      export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
       mv cache/node_modules frontend
       cd frontend && ls && npm run build && ls public
