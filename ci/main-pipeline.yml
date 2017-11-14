@@ -101,7 +101,7 @@ jobs:
             export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
             mv cache/node_modules frontend
             cd frontend && npm run build && ls -LR public
-            cp -a public/. ../frontend-public && ls -LR
+            cp -a public/. ../frontend-public && ls -LR ../frontend-public
 
 - name: Deploy
   public: true
@@ -111,15 +111,15 @@ jobs:
     trigger: true
     passed: [Build frontend]
 
-  - put: backend-stage
-    params:
-      manifest: cnets-chat-git/ci/assets/backend-manifest.yml
-      path: cnets-chat-git/backend
-
   - put: frontend-stage
     params:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
       path: cnets-chat-git/frontend-public
+
+  - put: backend-stage
+    params:
+      manifest: cnets-chat-git/ci/assets/backend-manifest.yml
+      path: cnets-chat-git/backend
 
   - put: madhosoi-slack
     params:
