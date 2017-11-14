@@ -5,7 +5,6 @@ image_resource:
   source: {repository: node, tag: "6" }
 inputs:
 - name: cnets-chat-git
-  path: .
 - name: dependency-cache
 run:
   path: ./ci/script/build-frontend.sh
