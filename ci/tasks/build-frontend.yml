@@ -22,4 +22,4 @@ run:
       export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
       mv cache/node_modules frontend
       cd frontend && npm run build && ls -LR public
-      cp -a public/. ../frontend-public
+      cp -a public/. ../frontend-public && ls -LR ..
