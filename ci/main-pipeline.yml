@@ -7,12 +7,26 @@ resource_types:
     repository: cfcommunity/slack-notification-resource
     tag: latest
 
+- name: npm-cache
+  type: docker-image
+  source:
+    repository: ymedlop/npm-cache-resource
+    tag: latest
+
 resources:
 - name: cnets-chat-git
   type: git
-  source:
+  source: &repo-source
     uri: {{cnets-chat-github-uri}}
     branch: {{cnets-chat-github-branch}}
+
+- name: dependency-cache
+  type: npm-cache
+  source:
+    <<: *repo-source
+    paths:
+      - backend/package.json
+      - frontend/package.json
 
 - name: madhosoi-slack
   type: slack-notification
@@ -40,9 +54,7 @@ resources:
     skip_cert_check: true
 
 jobs:
-- name: deploy
-  public: true
-  serial: true
+- name: Start Notification
   plan:
   - put: madhosoi-slack
     params:
@@ -50,13 +62,30 @@ jobs:
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
       text: Fujitsu CNETS Chat uploading!
       username: madhosoibot
-
+  
+- name: Install dependencies
+  plan:
   - get: cnets-chat-git
     trigger: true
-  
+
+  - get: dependency-cache
+
+- name: Building
+  plan:
+  - get: cnets-chat-git
+    trigger: true
+    passed: [Install dependencies]
+
+  - get: dependency-cache
+    passed: [Install dependencies]
+
   - task: build-frontend
     file: cnets-chat-git/ci/tasks/build-frontend.yml
 
+- name: Deploy
+  public: true
+  serial: true
+  plan:
   - put: backend-stage
     params:
       manifest: cnets-chat-git/ci/assets/backend-manifest.yml
@@ -67,6 +96,8 @@ jobs:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
       path: cnets-chat-git/frontend/public
 
+- name: Result Notification
+  plan:
   - put: madhosoi-slack
     params:
       channel: '#general'

@@ -6,11 +6,6 @@ image_resource:
 inputs:
 - name: cnets-chat-git
   path: ./frontend
+- name: dependency-cache
 run:
-  path: sh
-  args:
-  - -exc
-  - |
-    export API_URL={{cnets-backend-url}}
-    npm install
-    npm run build
+  path: cnets-chat-git/ci/script/build-frontend.sh
