@@ -4,8 +4,8 @@ image_resource:
   type: docker-image
   source: {repository: node, tag: "6" }
 inputs:
-- name: source-code
-  path: .
+- name: cnets-chat-git
+  path: /frontend
 run:
   path: sh
   args:
