@@ -6,8 +6,6 @@ image_resource:
 inputs:
 - name: source-code
   path: .
-outputs:
-- name: public
 run:
   path: sh
   args:
