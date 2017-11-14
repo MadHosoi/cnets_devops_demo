@@ -5,6 +5,13 @@ image_resource:
   source: {repository: node, tag: "6" }
 inputs:
 - name: cnets-chat-git
+  path: /frontend
 - name: dependency-cache
+  path: /cache
 run:
-  path: ./ci/script/build-frontend.sh
+  path: sh
+  args:
+    - -exc
+    - |
+      mv cache/node_modules frontend
+      cd frontend && npm run build
