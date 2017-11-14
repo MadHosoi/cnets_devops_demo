@@ -25,8 +25,8 @@ resources:
   source:
     <<: *repo-source
     paths:
-      - backend/package.json
-      - frontend/package.json
+      - ./backend/package.json
+      - ./frontend/package.json
 
 - name: madhosoi-slack
   type: slack-notification
@@ -54,7 +54,7 @@ resources:
     skip_cert_check: true
 
 jobs:
-- name: Start Notification
+- name: Install dependencies
   plan:
   - put: madhosoi-slack
     params:
@@ -62,15 +62,11 @@ jobs:
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
       text: Fujitsu CNETS Chat uploading!
       username: madhosoibot
-  
-- name: Install dependencies
-  plan:
   - get: cnets-chat-git
     trigger: true
-
   - get: dependency-cache
 
-- name: Building
+- name: Build frontend
   plan:
   - get: cnets-chat-git
     trigger: true
@@ -86,6 +82,9 @@ jobs:
   public: true
   serial: true
   plan:
+  - get: cnets-chat-git
+    trigger: true
+    passed: [Build frontend]
   - put: backend-stage
     params:
       manifest: cnets-chat-git/ci/assets/backend-manifest.yml
@@ -96,8 +95,6 @@ jobs:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
       path: cnets-chat-git/frontend/public
 
-- name: Result Notification
-  plan:
   - put: madhosoi-slack
     params:
       channel: '#general'
