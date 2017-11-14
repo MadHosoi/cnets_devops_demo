@@ -101,8 +101,7 @@ jobs:
             export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
             mv cache/node_modules frontend
             cd frontend && npm run build && ls -LR public
-            cp -a public/. ../frontend-public && ls -LR ../frontend-public
-
+            
 - name: Deploy
   public: true
   
@@ -114,7 +113,7 @@ jobs:
   - put: frontend-stage
     params:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
-      path: cnets-chat-git/frontend-public
+      path: cnets-chat-git/frontend/public
 
   - put: backend-stage
     params:
