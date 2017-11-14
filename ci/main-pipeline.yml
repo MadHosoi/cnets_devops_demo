@@ -25,8 +25,7 @@ resources:
   source:
     <<: *repo-source
     paths:
-      - ./backend/package.json
-      - ./frontend/package.json
+      - frontend/package.json
 
 - name: madhosoi-slack
   type: slack-notification
