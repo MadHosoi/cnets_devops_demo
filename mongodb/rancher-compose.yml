@@ -1,0 +1,34 @@
+version: '2'
+
+catalog:
+  name: "Mongo DB"
+  version: "v0.1"
+  description: "Mongo DB with Rancher NFS"
+  uuid: mongodb-0
+  minimum_rancher_version: v0.51.0
+  questions:
+
+services:
+  mongo:
+    scale: 1
+    start_on_create: true
+  mongo-lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      default_cert: cnets-mdiego
+      port_rules:
+      - priority: 1
+        protocol: http
+        service: mongo
+        source_port: 8087
+        target_port: 27017
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000

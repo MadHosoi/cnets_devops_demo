@@ -1,0 +1,68 @@
+---
+
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: latest
+
+resources:
+- name: cnets-chat-git
+  type: git
+  source:
+    uri: {{cnets-chat-github-uri}}
+    branch: {{cnets-chat-github-branch}}
+
+- name: madhosoi-slack
+  type: slack-notification
+  source:
+    uri: {{slack-uri}}
+
+- name: backend-stage
+  type: cf
+  source:
+    api: {{backend-cf-api}}
+    username: {{backend-cf-username}}
+    password: {{backend-cf-password}}
+    organization: {{backend-cf-org}}
+    space: {{backend-cf-space}}
+    skip_cert_check: true
+
+- name: frontend-stage
+  type: cf
+  source:
+    api: {{frontend-cf-api}}
+    username: {{frontend-cf-username}}
+    password: {{frontend-cf-password}}
+    organization: {{frontend-cf-org}}
+    space: {{frontend-cf-space}}
+    skip_cert_check: true
+
+jobs:
+- name: deploy
+  public: true
+  serial: true
+  plan:
+  - get: cnets-chat-git
+    trigger: true
+  
+  - task: build-frontend
+    file: cnets_devops_sample/ci/tasks/build-frontend.yml
+
+  - put: backend-stage
+    params:
+      manifest: cnets_devops_sample/ci/assets/backend-manifest.yml
+      path: cnets_devops_sample/backend
+
+  - put: frontend-stage
+    params:
+      manifest: cnets_devops_sample/ci/assets/frontend-manifest.yml
+      path: cnets_devops_sample/frontend/public
+
+  - put: madhosoi-slack
+    params:
+      channel: '#general'
+      icon_url: http://185.170.26.160/apps/theming/logo?v=10
+      text: Fujitsu CNETS Chat uploaded!
+      username: madhosoibot

@@ -1,0 +1,5 @@
+applications:
+- name: cnets-chat-demo
+  memory: 128M
+  disk_quota: 128M
+  buildpack: staticfile_buildpack
