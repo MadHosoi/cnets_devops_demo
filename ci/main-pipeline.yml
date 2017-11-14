@@ -68,7 +68,7 @@ jobs:
     trigger: true
   - get: dependency-cache
 
-- name: Build frontend
+- name: Build & Deploy frontend
   plan:
   - get: cnets-chat-git
     trigger: true
@@ -101,19 +101,18 @@ jobs:
             export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
             mv cache/node_modules frontend
             cd frontend && npm run build && ls -LR public
-            
-- name: Deploy
-  public: true
-  
-  plan:
-  - get: cnets-chat-git
-    trigger: true
-    passed: [Build frontend]
-
+            cp -a public/. ../frontend-public && ls -LR ../frontend-public
   - put: frontend-stage
     params:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
-      path: cnets-chat-git/frontend/public
+      path: cnets-chat-git/frontend-public
+
+- name: Deploy backend
+  public: true
+  plan:
+  - get: cnets-chat-git
+    trigger: true
+    passed: [Install dependencies]
 
   - put: backend-stage
     params:
