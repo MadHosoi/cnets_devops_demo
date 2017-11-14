@@ -26,6 +26,9 @@ resources:
     <<: *repo-source
     paths:
       - frontend/package.json
+    paths: # ... except that it's only interested in files listing dependencies
+        - src/frontend/package.json
+    project-path: src/frontend
 
 - name: madhosoi-slack
   type: slack-notification
