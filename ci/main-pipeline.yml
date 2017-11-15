@@ -25,6 +25,8 @@ resources:
   source:
     <<: *repo-source
     paths:
+      - frontend/package.json
+    paths:
         - frontend/package.json
     project-path: frontend
 
@@ -90,7 +92,7 @@ jobs:
 
       outputs:
       - name: cnets-chat-git-output
-        path: /frontend
+        path: /frontend-public
   
       run:
         path: sh
@@ -98,6 +100,7 @@ jobs:
           - -exc
           - |
             export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
+            ls frontend
             mv cache/node_modules frontend
             cd frontend && npm run build && ls -LR public
             cp -a public/. ../frontend-public && ls -LR ../frontend-public
