@@ -13,13 +13,14 @@
     "express": "^4.14.0",
     "swagger-tools": "^0.10.1",
     "mongodb": "^2.1.18",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "prometheus-client": "^0.1.1"
   },
   "devDependencies": {},
   "engines": {
     "node": "6.3.0"
   },
   "repository": {
-    "url": ""
+    "url": "https://github.com/MadHosoi/cnets_devops_demo.git"
   }
 }
