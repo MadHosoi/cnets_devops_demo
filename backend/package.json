@@ -18,7 +18,7 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": "6.3.0"
+    "node": ">=6.3.0"
   },
   "repository": {
     "url": "https://github.com/MadHosoi/cnets_devops_demo.git"
