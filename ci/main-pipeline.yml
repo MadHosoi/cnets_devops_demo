@@ -99,7 +99,7 @@ jobs:
         args:
           - -exc
           - |
-            export API_URL=https://cnets-chat-demo-backend.uk-1.cf-app.net
+            export API_URL={{cnets-backend-url}}
             ls frontend
             mv cache/node_modules frontend
             cd frontend && npm run build && ls -LR public
