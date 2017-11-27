@@ -109,6 +109,13 @@ jobs:
     params:
       manifest: cnets-chat-git/ci/assets/frontend-manifest.yml
       path: cnets-chat-git-output
+  
+  - put: madhosoi-slack
+    params:
+      channel: '#general'
+      icon_url: http://185.170.26.160/apps/theming/logo?v=10
+      text: Fujitsu CNETS Chat frontend uploaded!
+      username: madhosoibot
 
 - name: Deploy backend
   public: true
@@ -126,5 +133,5 @@ jobs:
     params:
       channel: '#general'
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
-      text: Fujitsu CNETS Chat uploaded!
+      text: Fujitsu CNETS Chat backend uploaded!
       username: madhosoibot
