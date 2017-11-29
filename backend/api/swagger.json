@@ -59,6 +59,32 @@
         },
         "operationId": "chat_streamsPOST",
         "x-swagger-router-controller": "Chat"
+      },
+      "delete": {
+        "description": "remove a stream",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "stream removed"
+          }
+        },
+        "operationId": "chat_streamsDELETE",
+        "x-swagger-router-controller": "Chat"
       }
     },
     "/chat_messages": {

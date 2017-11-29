@@ -3,6 +3,7 @@ var url = require('url');
 
 var chat_streamsGETLogic = require('../logics/chat_streamsGET');
 var chat_streamsPOSTLogic = require('../logics/chat_streamsPOST');
+var chat_streamsDELETELogic = require('../logics/chat_streamsDELETE');
 var chat_messagesGETLogic = require('../logics/chat_messagesGET');
 var chat_messagesPOSTLogic = require('../logics/chat_messagesPOST');
 var chat_filesGETLogic = require('../logics/chat_filesGET');
@@ -10,6 +11,7 @@ var chat_fileGETLogic = require('../logics/chat_fileGET');
 var chat_filePUTLogic = require('../logics/chat_filePUT');
 var chat_filePOSTLogic = require('../logics/chat_filePOST');
 var chat_fileDELETELogic = require('../logics/chat_fileDELETE');
+
 
 module.exports.chat_streamsGET = function chat_streamsGET (req, res, next) {
   chat_streamsGETLogic.chat_streamsGETStart(req, res, {}, function (result) {
@@ -20,6 +22,12 @@ module.exports.chat_streamsGET = function chat_streamsGET (req, res, next) {
 module.exports.chat_streamsPOST = function chat_streamsPOST (req, res, next) {
   chat_streamsPOSTLogic.chat_streamsPOSTStart(req, res, {}, function (result) {
     chat_streamsPOSTLogic.chat_streamsPOSTEnd(req, res, result);
+  });
+};
+
+module.exports.chat_streamsDELETE = function chat_streamsDELETE (req, res, next) {
+  chat_streamsDELETELogic.chat_streamsDELETEStart(req, res, {}, function (result) {
+    chat_streamsDELETELogic.chat_streamsDELETEEnd(req, res, result);
   });
 };
 
