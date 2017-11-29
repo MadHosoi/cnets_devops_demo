@@ -78,6 +78,7 @@ export default class ChatPage extends Component {
     const styles = ChatPage.getStyles(this.context);
     const mergedRootStyle = Object.assign({}, styles.root, style);
 
+    // CHANGE
     const top = <OneRowHeader title={"FUJITSU CNETS CHAT ©"} />;
 
     const left = (
