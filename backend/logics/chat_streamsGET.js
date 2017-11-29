@@ -9,7 +9,9 @@ exports.chat_streamsGETStart = function (req, res, results, next) {
   MongoClient.connect(url, { native_parser:true }, function(err, db) {
     var filter = req.query.filter ? JSON.parse(req.query.filter) : '';
     var where = filter ? filter.where : {};
-    db.collection('chat_stream').find(where).toArray(function(err, result) {
+    var mysort = { name: 1 };
+    db.collection('chat_stream').find(where).sort(mysort).toArray(function(err, result) {
+    //db.collection('chat_stream').find(where).toArray(function(err, result) {
       db.close();
       next(result || {});
     });
