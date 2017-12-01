@@ -60,7 +60,7 @@ jobs:
   plan:
   - put: madhosoi-slack
     params:
-      channel: '#general'
+      channel: '#cnets-devops'
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
       text: Fujitsu CNETS Chat uploading!
       username: madhosoibot
@@ -112,7 +112,7 @@ jobs:
   
   - put: madhosoi-slack
     params:
-      channel: '#general'
+      channel: '#cnets-devops'
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
       text: Fujitsu CNETS Chat frontend uploaded!
       username: madhosoibot
@@ -131,7 +131,7 @@ jobs:
 
   - put: madhosoi-slack
     params:
-      channel: '#general'
+      channel: '#cnets-devops'
       icon_url: http://185.170.26.160/apps/theming/logo?v=10
       text: Fujitsu CNETS Chat backend uploaded!
       username: madhosoibot
