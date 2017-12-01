@@ -83,7 +83,7 @@ Please change the property to a proper version for your environment. Especially 
 Not to mention that, it's just out of a template. Better you modify, finner your application become. So let's play with it.
 
 ## Version
-* [1.0.0]: Release
+[1.0.0]: Release
 
 
 ## License
