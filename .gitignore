@@ -1,2 +1,3 @@
 ci/main-properties.yml
-cflocal
+cflocal/*/*.droplet
+cflocal/*/*.cache

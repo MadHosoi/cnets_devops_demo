@@ -1,0 +1,3 @@
+applications:
+- name: cnets-chat-demo
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git

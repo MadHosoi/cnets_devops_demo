@@ -1,0 +1,4 @@
+applications:
+- name: cnets-chat-demo-backend
+  command: npm install && npm start
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
