@@ -14,7 +14,8 @@
     "swagger-tools": "^0.10.1",
     "mongodb": "^2.1.18",
     "request": "^2.74.0",
-    "prometheus-client": "^0.1.1"
+    "prometheus-client": "^0.1.1",
+    "cfenv": "^1.0.4"
   },
   "devDependencies": {},
   "engines": {

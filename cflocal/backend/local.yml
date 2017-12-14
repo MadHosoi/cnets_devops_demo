@@ -2,3 +2,11 @@ applications:
 - name: cnets-chat-demo-backend
   command: npm install && npm start
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
+  services:
+    user-provided:
+    - credentials:
+        uri: mongodb://185.170.26.160:8087/cnets_chat
+      label: user-provided
+      name: cnets-chat-demo-mongodb
+      syslog_drain_url: ''
+      tags: []

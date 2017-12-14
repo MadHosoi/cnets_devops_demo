@@ -32,5 +32,6 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   http.createServer(app).listen(config.serverPort, function () {
     console.log('Your server is listening on port %d (http://localhost:%d)', config.serverPort, config.serverPort);
     console.log('Swagger-ui is available on http://localhost:%d/docs', config.serverPort);
+    console.log('MongoDB URI: %d', config.mongoURI());
   });
 });
