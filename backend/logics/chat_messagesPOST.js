@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
 
 exports.chat_messagesPOSTStart = function (req, res, results, next) {
-  var url = config.mongodb.url;
+  var url = config.mongoURI();
   MongoClient.connect(url, function(err, db) {
     db.collection('chat_message').save(req.body, function(err, result) {
       db.close();

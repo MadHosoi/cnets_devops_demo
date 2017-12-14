@@ -5,7 +5,7 @@ var ObjectId = require('mongodb').ObjectId;
 
 exports.chat_messagesGETStart = function (req, res, results, next) {
 
-  var url = config.mongodb.url;
+  var url = config.mongoURI();
   MongoClient.connect(url, { native_parser: true }, function(err, db) {
     var filter = req.query.filter ? JSON.parse(req.query.filter) : '';
     var where = filter ? filter.where : {};

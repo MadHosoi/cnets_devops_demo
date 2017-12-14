@@ -7,16 +7,13 @@ function getMongoURI()
     var appenv = cfenv.getAppEnv();
   
     // Within the application environment (appenv) there's a services object
-    var services = appenv.services;
-    console.log(JSON.stringify(services));
+    var services = appenv.getServices();
     
     var mongoService = services["cnets-chat-demo-mongodb"];
 
     if (mongoService != undefined)
     {
-      console.log(JSON.stringify(mongoService));
-      var credentials = mongoService[0].credentials;
-      return JSON.stringify(credentials);
+      return mongoService.credentials.uri;
     }
     else return "service cnets-chat-demo-mongodb undefined";
   }
