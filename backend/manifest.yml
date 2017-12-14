@@ -4,3 +4,5 @@ applications:
   memory: 128M
   disk_quota: 128M
   command: npm start
+  services:
+  - cnets-chat-demo-mongodb
