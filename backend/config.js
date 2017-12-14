@@ -12,7 +12,7 @@ module.exports.getMongoUrl = function getMongoUrl()
 
     if (mongoService != undefined)
     {
-      return mongoService.uri;
+      return mongoService.credentials.uri;
     }
   }
 }
