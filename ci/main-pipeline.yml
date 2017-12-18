@@ -26,8 +26,6 @@ resources:
     <<: *repo-source
     paths:
       - frontend/package.json
-    paths:
-        - frontend/package.json
     project-path: frontend
 
 - name: madhosoi-slack
