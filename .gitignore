@@ -1,3 +1,4 @@
 ci/main-properties.yml
 cflocal/*/*.droplet
 cflocal/*/*.cache
+.vscode
