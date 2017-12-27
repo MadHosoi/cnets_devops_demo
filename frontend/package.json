@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server -d --progress --colors --open",
     "build": "webpack -p --progress --colors --display-error-details --env.production",
+    "build-ci": "webpack -p --display-error-details --env.production",
     "test": "cross-env BABEL_JEST_STAGE=0 jest",
     "lint": "eslint app/** --fix"
   },

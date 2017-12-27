@@ -100,7 +100,7 @@ jobs:
             export API_URL={{cnets-backend-url}}
             ls frontend
             mv cache/node_modules frontend
-            cd frontend && npm run build && ls -LR public
+            cd frontend && npm run test && npm run build-ci && ls -LR public
             cp -a public/. ../frontend-public && ls -LR ../frontend-public
 
   - put: frontend-stage
